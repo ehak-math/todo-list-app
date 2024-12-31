@@ -22,7 +22,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -i Downloads/project-cm.pem ec2-user@52.91.194.180 "
+          ssh -i project-cm.pem ec2-user@52.91.194.180 "
           cd todo-list-app &&
           git reset --hard &&
           git pull origin main &&
