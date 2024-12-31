@@ -3,7 +3,7 @@ services:
     image: node:18-alpine
     command: sh -c "yarn install && yarn run dev"
     ports:
-      - 127.0.0.1:3000:3000
+      - 80:3000
     working_dir: /app
     volumes:
       - ./:/app
@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: secret
       MYSQL_DB: todos
       MYSQL_PART: 3306
-      
+
 # MySQL service is not needed anymore as you're using Amazon RDS
   # mysql:
   #   image: mysql:8.0
