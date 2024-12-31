@@ -1,0 +1,26 @@
+name: CI/CD Pipeline for Todo List App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t todolist-app .
+          docker-compose up --build
+
+      - name: Deploy to EC2
+        run: |
+          ssh -i Downloads/project-cm.pem ec2-user@52.91.194.180 "cd todo-list-app && docker-compose up --build"
